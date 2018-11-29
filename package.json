@@ -1,0 +1,67 @@
+{
+  "private": true,
+  "name": "okam-todo",
+  "version": "0.1.0",
+  "description": "A okam project",
+  "main": "index.js",
+  "scripts": {
+    "lint": "fecs ./src --reporter=baidu --rule --type=vue,js",
+    "build": "cross-env NODE_ENV=dev node scripts/build.js --clean",
+    "prod": "node scripts/build.js --clean",
+    "dev": "cross-env NODE_ENV=dev node scripts/build.js --watch",
+    "dev:clean": "cross-env NODE_ENV=dev node scripts/build.js --watch --clean",
+    "dev:server": "cross-env NODE_ENV=dev node scripts/build.js --watch --server",
+    "dev:wx": "cross-env NODE_ENV=dev node scripts/build.js --watch --type wx",
+    "dev:wx:server": "cross-env NODE_ENV=dev node scripts/build.js --watch --server --type wx",
+    "dev:wx:clean": "cross-env NODE_ENV=dev node scripts/build.js --watch --clean --type wx",
+    "prod:wx": "node scripts/build.js --clean --type wx",
+    "dev:ant": "cross-env NODE_ENV=dev node scripts/build.js --watch --type ant",
+    "dev:ant:server": "cross-env NODE_ENV=dev node scripts/build.js --watch --server --type ant",
+    "dev:ant:clean": "cross-env NODE_ENV=dev node scripts/build.js --watch --clean --type ant",
+    "prod:ant": "node scripts/build.js --clean --type ant"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "linters": {
+      "*.{js,vue}": [
+        "fecs --reporter=baidu --rule --type=vue,js"
+      ]
+    },
+    "ignore": [
+      "dist/**/*",
+      "wx_dist/**/*",
+      "ant_dist/**/*"
+    ]
+  },
+  "author": "xiaohong8023@outlook.com",
+  "devDependencies": {
+    "@babel/core": "^7.1.6",
+    "@babel/preset-env": "^7.1.6",
+    "autoresponse": "^0.2.2",
+    "connect": "^3.6.6",
+    "cross-env": "^5.2.0",
+    "fecs": "^1.6.4",
+    "husky": "^1.2.0",
+    "json5": "^2.1.0",
+    "lint-staged": "^8.1.0",
+    "okam-build": "^0.3.2",
+    "okam-plugin-tinyimg": "^0.1.1",
+    "postcss": "^7.0.6",
+    "postcss-url": "^8.0.0",
+    "promise-polyfill": "^8.1.0",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0",
+    "regenerator-runtime": "^0.13.1",
+    "stylus": "^0.54.5"
+  },
+  "engine": {
+    "node": ">= 8"
+  },
+  "dependencies": {
+    "okam-core": "^0.3.3"
+  }
+}
