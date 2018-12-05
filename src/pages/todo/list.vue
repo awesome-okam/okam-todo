@@ -90,6 +90,10 @@ export default {
         console.log(state);
     },
 
+    onShow() {
+        this.$fireStoreChange();
+    },
+
     methods: {
         onToggleDone(id) {
             this.toggle(id);

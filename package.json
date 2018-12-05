@@ -6,19 +6,26 @@
   "main": "index.js",
   "scripts": {
     "lint": "fecs ./src --reporter=baidu --rule --type=vue,js",
-    "build": "cross-env NODE_ENV=dev node scripts/build.js --clean",
-    "prod": "node scripts/build.js --clean",
-    "dev": "cross-env NODE_ENV=dev node scripts/build.js --watch",
-    "dev:clean": "cross-env NODE_ENV=dev node scripts/build.js --watch --clean",
-    "dev:server": "cross-env NODE_ENV=dev node scripts/build.js --watch --server",
-    "dev:wx": "cross-env NODE_ENV=dev node scripts/build.js --watch --type wx",
-    "dev:wx:server": "cross-env NODE_ENV=dev node scripts/build.js --watch --server --type wx",
-    "dev:wx:clean": "cross-env NODE_ENV=dev node scripts/build.js --watch --clean --type wx",
-    "prod:wx": "node scripts/build.js --clean --type wx",
-    "dev:ant": "cross-env NODE_ENV=dev node scripts/build.js --watch --type ant",
-    "dev:ant:server": "cross-env NODE_ENV=dev node scripts/build.js --watch --server --type ant",
-    "dev:ant:clean": "cross-env NODE_ENV=dev node scripts/build.js --watch --clean --type ant",
-    "prod:ant": "node scripts/build.js --clean --type ant"
+    "commit": "git-cz",
+    "commitmsg": "commitlint -E HUSKY_GIT_PARAMS",
+    "dev:base": "cross-env NODE_ENV=dev node scripts/build.js --watch",
+    "prod:base": "node scripts/build.js --clean",
+    "dev": "npm run dev:base",
+    "dev:clean": "npm run dev:base -- --clean",
+    "dev:server": "npm run dev:base -- --server",
+    "prod": "npm run prod:base",
+    "dev:wx": "npm run dev:base -- --type wx",
+    "dev:wx:server": "npm run dev:base -- --server --type wx",
+    "dev:wx:clean": "npm run dev:base -- --clean --type wx",
+    "prod:wx": "npm run prod:base -- --type wx",
+    "dev:ant": "npm run dev:base -- --type ant",
+    "dev:ant:server": "npm run dev:base -- --server --type ant",
+    "dev:ant:clean": "npm run dev:base -- --clean --type ant",
+    "prod:ant": "npm run prod:base -- --type ant",
+    "dev:tt": "npm run dev:base -- --type tt",
+    "dev:tt:server": "npm run dev:base -- --server --type tt",
+    "dev:tt:clean": "npm run dev:base -- --clean --type tt",
+    "prod:tt": "npm run prod:base -- --type tt"
   },
   "husky": {
     "hooks": {
@@ -37,18 +44,26 @@
       "ant_dist/**/*"
     ]
   },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
   "author": "xiaohong8023@outlook.com",
   "devDependencies": {
     "@babel/core": "^7.1.6",
     "@babel/preset-env": "^7.1.6",
+    "@commitlint/cli": "^7.2.1",
+    "@commitlint/config-conventional": "^7.1.2",
     "autoresponse": "^0.2.2",
+    "commitizen": "^3.0.5",
     "connect": "^3.6.6",
     "cross-env": "^5.2.0",
     "fecs": "^1.6.4",
     "husky": "^1.2.0",
     "json5": "^2.1.0",
     "lint-staged": "^8.1.0",
-    "okam-build": "^0.3.2",
+    "okam-build": "^0.4.0-beta.4",
     "okam-plugin-tinyimg": "^0.1.1",
     "postcss": "^7.0.6",
     "postcss-url": "^8.0.0",
@@ -62,6 +77,6 @@
     "node": ">= 8"
   },
   "dependencies": {
-    "okam-core": "^0.3.3"
+    "okam-core": "^0.4.0-beta.3"
   }
 }
